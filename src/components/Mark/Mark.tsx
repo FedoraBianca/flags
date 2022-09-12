@@ -3,18 +3,18 @@ import { MarkWrapper } from './Mark.style';
 
 export interface IMark {
   color: string;
-  symbol: 'x' | 'o';
-  size?: 'default'| 'small';
+  symbol: 'XMark' | 'OMark' | 'XMarkOutline' | 'OMarkOutline';
+  size: string;
 }
 
 const Mark: React.FC<IMark> =({
   color,
   symbol,
-  size = 'default'
+  size,
 }) => {
   return (
   <MarkWrapper color={color} size={size}>
-    {symbol}
+    <span className={`icon-${symbol}`}></span>
   </MarkWrapper>
   );
 };

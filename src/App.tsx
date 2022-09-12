@@ -1,11 +1,16 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Mark from './components/Mark';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <Mark symbol='XMark' size='60px' color='red' />
+        <Mark symbol='OMark' size='60px' color='red' />
+        <Mark symbol='XMarkOutline' size='60px' color='red' />
+        <Mark symbol='OMarkOutline' size='60px' color='red' />
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.

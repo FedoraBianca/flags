@@ -13,25 +13,13 @@ const Template: Story<IMark> = (args: any) => <Mark {...args} />
 export const XMark = Template.bind({});
 XMark.args = {
   color: '#31C3BD',
-  symbol: 'x',
-};
-
-export const XMarkSmall = Template.bind({});
-XMarkSmall.args = {
-  color: '#31C3BD',
-  symbol: 'x',
-  size: 'small',
+  symbol: 'XMark',
+  size: '60px'
 };
 
 export const OMark = Template.bind({});
 OMark.args = {
   color: '#F2B137',
-  symbol: 'o',
-};
-
-export const OMarkSmall = Template.bind({});
-OMarkSmall.args = {
-  color: '#F2B137',
-  symbol: 'o',
-  size: 'small',
+  symbol: 'OMark',
+  size: '60px'
 };
