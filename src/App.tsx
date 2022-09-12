@@ -17,20 +17,17 @@ function App() {
   })
 
   return (
-    <div className='d-flex flex-column'>
+    <div className='game'>
       <div className='d-flex flex-row'>
         {/* TODO and logo row here */}
       </div>
 
-      <div className='d-flex flex-wrap grid'>
+      <div className='grid'>
         {grid.map((value, index) => {
           const isFilled = value !== null;
 
           return (
-            <>
-              <Square isFilled={isFilled} player={value}/>
-            </>
-            
+            <Square isFilled={isFilled} player={value} className='square'/>
           );
         })}
       </div>

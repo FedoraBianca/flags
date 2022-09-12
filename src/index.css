@@ -22,6 +22,20 @@ code {
     monospace;
 }
 
+.game {
+  display: flex;
+  flex-direction: column;
+  width: 480px;
+}
+
 .grid {
-  width: 600px
+  display: flex;
+  position: relative;
+  flex-flow: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.square {
+  margin: 10px;
 }
