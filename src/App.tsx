@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Mark from './components/Mark';
 import ScoreBox from './components/ScoreBox';
 import Square from './components/Square';
 
