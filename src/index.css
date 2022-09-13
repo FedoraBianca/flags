@@ -26,6 +26,19 @@ code {
   display: flex;
   flex-direction: column;
   width: 480px;
+  margin: 20vh 0 20vh 0;
+}
+
+.top-row{
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.score-row {
+  display: flex;
+  flex-direction: row;
 }
 
 .grid {

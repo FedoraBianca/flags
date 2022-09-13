@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Logo from './components/Logo';
 import ScoreBox from './components/ScoreBox';
 import Square from './components/Square';
 
@@ -17,8 +18,8 @@ function App() {
 
   return (
     <div className='game'>
-      <div className='d-flex flex-row'>
-        {/* TODO and logo row here */}
+      <div className='top-row'>
+        <Logo />
       </div>
 
       <div className='grid'>
@@ -26,12 +27,12 @@ function App() {
           const isFilled = value !== null;
 
           return (
-            <Square isFilled={isFilled} player={value} className='square'/>
+            <Square isFilled={isFilled} player={value} className='square' />
           );
         })}
       </div>
 
-      <div className='d-flex flex-row'>
+      <div className='score-row'>
         <ScoreBox color='#31C3BD' title='X (You)' score={24} />
         <ScoreBox color='#A8BFC9' title='TIES' score={24} />
         <ScoreBox color='#F2B137' title='O (CPU)' score={24} />
