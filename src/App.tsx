@@ -13,8 +13,8 @@ function App() {
   const [grid, setGrid] = useState(new Array(9).fill(null));
   // TODO: Update this according to the user choice
   const [players, setPlayers] = useState({
-    human: PlayerTypes.PLAYER_O,
-    computer: PlayerTypes.PLAYER_X
+    human: PlayerTypes.PLAYER_X,
+    computer: PlayerTypes.PLAYER_O
   });
 
   const move = (index: number, player: number) => {
