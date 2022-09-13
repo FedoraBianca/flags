@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Logo from './components/Logo';
 import ScoreBox from './components/ScoreBox';
 import Square from './components/Square';
+import { getRandomInt } from './utils/helpers';
 
 export enum PlayerTypes {
   PLAYER_X = 1,
@@ -14,7 +15,31 @@ function App() {
   const [players, setPlayers] = useState({
     human: PlayerTypes.PLAYER_O,
     computer: PlayerTypes.PLAYER_X
-  })
+  });
+
+  const move = (index: number, player: number) => {
+    setGrid(grid => {
+      const gridCopy = grid.concat();
+      gridCopy[index] = player;
+      return gridCopy;
+    });
+  };
+
+
+  const computerMove = () => {
+    let index = getRandomInt(0, 8);
+    while (grid[index]) {
+      index = getRandomInt(0, 8);
+    }
+    move(index, players.computer);
+  };
+
+  const humanMove = (index: number) => {
+    if (!grid[index]) {
+      move(index, players.human);
+      computerMove();
+    }
+  };
 
   return (
     <div className='game'>
@@ -27,7 +52,13 @@ function App() {
           const isFilled = value !== null;
 
           return (
-            <Square isFilled={isFilled} player={value} className='square' />
+            <Square
+              isFilled={isFilled}
+              player={value}
+              className='square'
+              key={index}
+              onClick={() => humanMove(index)}
+            />
           );
         })}
       </div>
