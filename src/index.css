@@ -17,6 +17,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1, h2, h3, h4, h5 {
+  font-family: 'Outfit', serif;
+  font-weight: bold;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -39,6 +44,10 @@ code {
 .score-row {
   display: flex;
   flex-direction: row;
+}
+
+.score-row div {
+  margin: 10px;
 }
 
 .grid {

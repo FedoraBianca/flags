@@ -15,7 +15,7 @@ const Icon: React.FC<IIcon> =({
   className = ''
 }) => {
   return (
-  <IconWrapper color={color} size={size} className={`d-flex icon-${icon} ${className}`} />
+  <IconWrapper color={color} size={size} className={`icon-${icon} ${className}`} />
   );
 };
 

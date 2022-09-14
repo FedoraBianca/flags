@@ -14,13 +14,9 @@ export const SquareWrapper = styled.div`
     display: none;
   }
 
-  &.empty {
-    cursor: pointer;
-
-    &:hover {
-      .hover-icon {
-        display: inline-flex;
-      }
+  &:hover {
+    .hover-icon {
+      display: inline-flex;
     }
   }
 `;

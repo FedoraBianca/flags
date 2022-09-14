@@ -1,4 +1,5 @@
 import React from 'react';
+import Heading from '../Heading';
 import { ScoreBoxWrapper } from './ScoreBox.style';
 
 export interface IScoreBox {
@@ -19,9 +20,9 @@ const ScoreBox: React.FC<IScoreBox> = ({
       <div>
         {title}
       </div>
-      <div>
+      <Heading type='M'>
         {score}
-      </div>
+      </Heading>
     </ScoreBoxWrapper>
   );
 };
