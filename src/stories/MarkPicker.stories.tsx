@@ -16,3 +16,8 @@ export const XActive = Template.bind({});
 XActive.args = {
   value: PlayerTypes.PLAYER_X
 };
+
+export const OActive = Template.bind({});
+OActive.args = {
+  value: PlayerTypes.PLAYER_O
+};

@@ -11,14 +11,19 @@ export interface IMarkPicker {
 }
 
 const MarkPicker: React.FC<IMarkPicker> =({
+  value,
   className = ''
 }) => {
   return (
   <MarkPickerWrapper className={`d-flex flex-column ${className}`}>
     <Heading type='XS'>PICK PLAYER 1'S MARK</Heading>
-    <div className='d-flex flex-row'>
-      <div className='mark-wrapper'><Icon icon='XMark' size='32px' color='#A8BFC9' /></div>
-      <div className='mark-wrapper'><Icon icon='OMark' size='32px' color='#1A2A33' /></div>
+    <div className='mark-row'>
+      <div className={`mark-wrapper ${value === PlayerTypes.PLAYER_X ? 'active': ''}`}>
+        <Icon icon='XMark' size='32px' color={value === PlayerTypes.PLAYER_X ? '#1A2A33' : '#A8BFC9'} />
+      </div>
+      <div className={`mark-wrapper ${value === PlayerTypes.PLAYER_O ? 'active': ''}`}>
+        <Icon icon='OMark' size='32px' color={value === PlayerTypes.PLAYER_O ? '#1A2A33' : '#A8BFC9'} />
+        </div>
     </div>
     <p>REMEMBER: X GOES FIRST</p>
   </MarkPickerWrapper>
