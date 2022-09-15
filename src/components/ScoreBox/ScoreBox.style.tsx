@@ -11,4 +11,13 @@ export const ScoreBoxWrapper = styled.div<IScoreBoxWrapper>`
   height: 72px;
   text-align: center;
   padding: 10px;
+
+  .title {
+    font-size: 14px;
+    margin: 6px auto 5px auto;
+  }
+
+  .score {
+    margin: 0 auto 10px auto;
+  }
 `;

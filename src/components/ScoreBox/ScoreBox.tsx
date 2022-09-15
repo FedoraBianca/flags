@@ -17,10 +17,10 @@ const ScoreBox: React.FC<IScoreBox> = ({
 }) => {
   return (
     <ScoreBoxWrapper backgroundColor={color} className={`d-flex flex-column justify-content-center ${className}`}>
-      <div>
+      <div className='title'>
         {title}
       </div>
-      <Heading type='M'>
+      <Heading type='M' className='score'>
         {score}
       </Heading>
     </ScoreBoxWrapper>
