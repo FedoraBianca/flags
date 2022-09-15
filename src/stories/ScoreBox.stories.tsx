@@ -9,7 +9,7 @@ export default {
   component: ScoreBox,
 }
 
-const Template: Story<IScoreBox> = (args: any) => <ScoreBox {...args} />
+const Template: Story<IScoreBox> = (args: any) => <ScoreBox {...args} />;
 
 export const XScore = Template.bind({});
 XScore.args = {

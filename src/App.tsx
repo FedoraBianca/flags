@@ -1,50 +1,76 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import Button from './components/Button';
 import Logo from './components/Logo';
 import ScoreBox from './components/ScoreBox';
 import Square from './components/Square';
+import { GAME_STATES, PlayerTypes } from './utils/constants';
 import { getRandomInt } from './utils/helpers';
-
-export enum PlayerTypes {
-  PLAYER_X = 1,
-  PLAYER_O = 2
-}
 
 function App() {
   const [grid, setGrid] = useState(new Array(9).fill(null));
-  // TODO: Update this according to the user choice
+  const [gameState, setGameState] = useState(GAME_STATES.NOT_STARTED);
   const [players, setPlayers] = useState({
     human: PlayerTypes.PLAYER_X,
     computer: PlayerTypes.PLAYER_O
   });
+  const [nextMove, setNextMove] = useState<PlayerTypes>(players.human);
 
-  const move = (index: number, player: number) => {
-    setGrid(grid => {
-      const gridCopy = grid.concat();
-      gridCopy[index] = player;
-      return gridCopy;
-    });
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+    if (nextMove === players.computer && gameState !== GAME_STATES.OVER) {
+      timer = setTimeout(() => {
+        computerMove();
+      }, 500);
+    }
+    return () => timer && clearTimeout(timer);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [gameState, nextMove, players.computer]);
+
+  const switchPlayer = (player: PlayerTypes) => {
+    return player === PlayerTypes.PLAYER_X ? PlayerTypes.PLAYER_O : PlayerTypes.PLAYER_X;
   };
 
+  const choosePlayer = (option: PlayerTypes) => {
+    setPlayers({ human: option, computer: switchPlayer(option) });
+    setGameState(GAME_STATES.IN_PROGRESS);
+  };
 
-  const computerMove = () => {
+  const move = useCallback(
+    (index: number, player: PlayerTypes) => {
+      if (player && gameState === GAME_STATES.IN_PROGRESS) {
+        setGrid(grid => {
+          const gridCopy = grid.concat();
+          gridCopy[index] = player;
+          return gridCopy;
+        });
+      }
+    },
+    [gameState]
+  );
+
+  const computerMove = useCallback(() => {
     let index = getRandomInt(0, 8);
     while (grid[index]) {
       index = getRandomInt(0, 8);
     }
+  
     move(index, players.computer);
-  };
+    setNextMove(players.human);
+  
+  }, [move, grid, players]);
 
   const humanMove = (index: number) => {
-    if (!grid[index]) {
+    if (!grid[index] && nextMove === players.human) {
       move(index, players.human);
-      computerMove();
+      setNextMove(players.computer);
     }
   };
 
   return (
     <div className='game'>
-      <div className='top-row'>
+      <div className='d-flex justify-content-between top-row'>
         <Logo />
+        <Button variant='redo'/>
       </div>
 
       <div className='grid'>
@@ -67,6 +93,12 @@ function App() {
         <ScoreBox color='#31C3BD' title='X (You)' score={24} />
         <ScoreBox color='#A8BFC9' title='TIES' score={24} />
         <ScoreBox color='#F2B137' title='O (CPU)' score={24} />
+      </div>
+      <div>
+        <Button variant='primary' theme='blue'>Test button</Button>
+        <Button variant='secondary' theme='yellow'>Test button</Button>
+        <Button variant='primary' theme='grey'>Test button</Button>
+        <Button variant='secondary' theme='grey'>Test button</Button>
       </div>
     </div>
   );

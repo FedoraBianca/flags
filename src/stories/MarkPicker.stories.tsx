@@ -1,0 +1,18 @@
+import React from 'react';
+import { Story } from '@storybook/react';
+
+import MarkPicker from '../components/MarkPicker'
+import { IMarkPicker } from '../components/MarkPicker/MarkPicker';
+import { PlayerTypes } from '../utils/constants';
+
+export default {
+  title: 'MarkPicker',
+  component: MarkPicker,
+}
+
+const Template: Story<IMarkPicker> = (args: any) => <MarkPicker {...args} />;
+
+export const XActive = Template.bind({});
+XActive.args = {
+  value: PlayerTypes.PLAYER_X
+};

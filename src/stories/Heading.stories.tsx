@@ -9,7 +9,7 @@ export default {
   component: Heading,
 }
 
-const Template: Story<IHeading> = (args: any) => <Heading {...args} />
+const Template: Story<IHeading> = (args: any) => <Heading {...args} />;
 
 export const HeadingL = Template.bind({});
 HeadingL.args = {

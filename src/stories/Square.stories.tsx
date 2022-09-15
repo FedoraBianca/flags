@@ -2,14 +2,14 @@ import React from 'react';
 import { Story } from '@storybook/react';
 import Square from '../components/Square';
 import { ISquare } from '../components/Square/Square';
-import { PlayerTypes } from '../App';
+import { PlayerTypes } from '../utils/constants';
 
 export default {
   title: 'Square',
   component: Square,
 }
 
-const Template: Story<ISquare> = (args: any) => <Square {...args} />
+const Template: Story<ISquare> = (args: any) => <Square {...args} />;
 
 export const EmptyForPlayerX = Template.bind({});
 EmptyForPlayerX.args = {
