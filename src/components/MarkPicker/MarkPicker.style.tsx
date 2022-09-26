@@ -25,14 +25,19 @@ export const MarkPickerWrapper = styled.div`
       padding: 10px;
       cursor: pointer;
 
+      &:hover {
+        background-color: #203139;
+      }
+
       &.active {
         background-color: #A8BFC9;
+        cursor: default;
       }
     }
   }
 
   p {
-    color: #A8BFC9;
+    color: #647a85;
     margin: 20px auto 5px auto;
     font-size: 14px;
   }

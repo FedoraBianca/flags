@@ -94,12 +94,6 @@ function App() {
         <ScoreBox color='#A8BFC9' title='TIES' score={24} />
         <ScoreBox color='#F2B137' title='O (CPU)' score={24} />
       </div>
-      <div>
-        <Button variant='primary' theme='blue'>Test button</Button>
-        <Button variant='secondary' theme='yellow'>Test button</Button>
-        <Button variant='primary' theme='grey'>Test button</Button>
-        <Button variant='secondary' theme='grey'>Test button</Button>
-      </div>
     </div>
   );
 }
