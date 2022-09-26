@@ -8,3 +8,9 @@ export enum PlayerTypes {
   PLAYER_X = 1,
   PLAYER_O = 2
 }
+
+export enum WinnerTypes {
+  PLAYER_X = 1,
+  PLAYER_O = 2,
+  DRAW = 0
+}

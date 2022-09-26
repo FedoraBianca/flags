@@ -3,8 +3,8 @@ import Button from './components/Button';
 import Logo from './components/Logo';
 import ScoreBox from './components/ScoreBox';
 import Square from './components/Square';
-import { GAME_STATES, PlayerTypes } from './utils/constants';
-import { getRandomInt } from './utils/helpers';
+import { GAME_STATES, PlayerTypes, WinnerTypes } from './utils/constants';
+import { getRandomInt, getWinner } from './utils/helpers';
 
 function App() {
   const [grid, setGrid] = useState(new Array(9).fill(null));
@@ -14,6 +14,7 @@ function App() {
     computer: PlayerTypes.PLAYER_O
   });
   const [nextMove, setNextMove] = useState<PlayerTypes>(players.human);
+  const [winner, setWinner] = useState<WinnerTypes | null>(null);
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
@@ -25,6 +26,11 @@ function App() {
     return () => timer && clearTimeout(timer);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameState, nextMove, players.computer]);
+
+  useEffect(() => {
+    setWinner(getWinner(grid));
+    setGameState(GAME_STATES.OVER);
+  }, [gameState, grid, nextMove]);
 
   const switchPlayer = (player: PlayerTypes) => {
     return player === PlayerTypes.PLAYER_X ? PlayerTypes.PLAYER_O : PlayerTypes.PLAYER_X;
