@@ -7,22 +7,22 @@ export const PrimaryButton = styled.button`
   text-transform: uppercase;
   text-align: center;
   border: none;
-  padding: 10px 25px 16px 25px;
+  padding: 14px 25px 16px 25px;
   border-radius: 12px;
 
   &.blue {
     background-color: #31C3BD;
-    box-shadow: inset 0px -8px 0px #118C87;
+    box-shadow: inset 0px -4px 0px #118C87;
   }
 
   &.yellow {
     background-color: #F2B137;
-    box-shadow: inset 0px -8px 0px #CC8B13;
+    box-shadow: inset 0px -4px 0px #CC8B13;
   }
 
   &.grey {
     background-color: #A8BFC9;
-    box-shadow: inset 0px -8px 0px #84979f;
+    box-shadow: inset 0px -4px 0px #84979f;
   }
 `
 

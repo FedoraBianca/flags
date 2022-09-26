@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Button from './components/Button';
 import Logo from './components/Logo';
+import Modal from './components/Modal';
 import ScoreBox from './components/ScoreBox';
 import Square from './components/Square';
-import { GAME_STATES, PlayerTypes, WinnerTypes } from './utils/constants';
+import { GAME_STATES, ModalTypes, PlayerTypes, WinnerTypes } from './utils/constants';
 import { getRandomInt, getWinner } from './utils/helpers';
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
       }, 500);
     }
     return () => timer && clearTimeout(timer);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameState, nextMove, players.computer]);
 
   useEffect(() => {
@@ -59,10 +60,10 @@ function App() {
     while (grid[index]) {
       index = getRandomInt(0, 8);
     }
-  
+
     move(index, players.computer);
     setNextMove(players.human);
-  
+
   }, [move, grid, players]);
 
   const humanMove = (index: number) => {
@@ -73,34 +74,37 @@ function App() {
   };
 
   return (
-    <div className='game'>
-      <div className='d-flex justify-content-between top-row'>
-        <Logo />
-        <Button variant='redo'/>
-      </div>
+    <>
+      <div className='game'>
+        <div className='d-flex justify-content-between top-row'>
+          <Logo />
+          <Button variant='redo' />
+        </div>
 
-      <div className='grid'>
-        {grid.map((value, index) => {
-          const isFilled = value !== null;
+        <div className='grid'>
+          {grid.map((value, index) => {
+            const isFilled = value !== null;
 
-          return (
-            <Square
-              isFilled={isFilled}
-              player={value}
-              className='square'
-              key={index}
-              onClick={() => humanMove(index)}
-            />
-          );
-        })}
-      </div>
+            return (
+              <Square
+                isFilled={isFilled}
+                player={value}
+                className='square'
+                key={index}
+                onClick={() => humanMove(index)}
+              />
+            );
+          })}
+        </div>
 
-      <div className='score-row'>
-        <ScoreBox color='#31C3BD' title='X (You)' score={24} />
-        <ScoreBox color='#A8BFC9' title='TIES' score={24} />
-        <ScoreBox color='#F2B137' title='O (CPU)' score={24} />
+        <div className='score-row'>
+          <ScoreBox color='#31C3BD' title='X (You)' score={24} />
+          <ScoreBox color='#A8BFC9' title='TIES' score={24} />
+          <ScoreBox color='#F2B137' title='O (CPU)' score={24} />
+        </div>
       </div>
-    </div>
+      <Modal showModal={true} type={ModalTypes.OUTCOME} winner={winner} />
+    </>
   );
 }
 

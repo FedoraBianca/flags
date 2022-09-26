@@ -4,6 +4,11 @@ export const GAME_STATES = {
   OVER: 'OVER'
 };
 
+export enum ModalTypes {
+  OUTCOME = 'OUTCOME',
+  RESTART = 'RESTART',
+}
+
 export enum PlayerTypes {
   PLAYER_X = 1,
   PLAYER_O = 2
