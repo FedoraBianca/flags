@@ -2,7 +2,7 @@ import React from 'react';
 import { Story } from '@storybook/react';
 import Square from '../components/Square';
 import { ISquare } from '../components/Square/Square';
-import { PlayerTypes } from '../utils/constants';
+import { PlayerTypes } from '../utils/game';
 
 export default {
   title: 'Square',

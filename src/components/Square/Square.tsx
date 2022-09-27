@@ -1,5 +1,5 @@
 import React from 'react';
-import { PlayerTypes } from '../../utils/constants';
+import { PlayerTypes } from '../../utils/game';
 import Icon from '../Icon';
 import { SquareWrapper } from './Square.style';
 

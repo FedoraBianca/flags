@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { WinnerTypes, ModalTypes, PlayerTypes } from '../../utils/constants';
+import { WinnerTypes } from '../../utils/game';
 import Button from '../Button';
 import Heading from '../Heading';
 import Icon from '../Icon';
 import { ModalWrapper } from './Modal.style';
+
+export enum ModalTypes {
+  OUTCOME = 'OUTCOME',
+  RESTART = 'RESTART',
+}
 
 export interface IModal {
   type: ModalTypes;

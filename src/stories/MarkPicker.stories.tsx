@@ -3,7 +3,7 @@ import { Story } from '@storybook/react';
 
 import MarkPicker from '../components/MarkPicker'
 import { IMarkPicker } from '../components/MarkPicker/MarkPicker';
-import { PlayerTypes } from '../utils/constants';
+import { PlayerTypes } from '../utils/game';
 
 export default {
   title: 'MarkPicker',
