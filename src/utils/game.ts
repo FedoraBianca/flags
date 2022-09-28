@@ -51,7 +51,6 @@ export default class Game {
     this.state = GameStates.IN_PROGRESS;
     this.players = { human: selectedPlayer, computer: this.getOtherPlayer(selectedPlayer)};
     this.nextMove = this.players.human;
-    console.log(this.players);
   };
 
   getOtherPlayer = (player: PlayerTypes): PlayerTypes => {
@@ -84,8 +83,6 @@ export default class Game {
     let winner = null;
   
     winningLines.forEach((line: number[], index: number) => {
-      console.log('this.grid[line[0]]: ', this.grid[line[0]], this.grid[line[1]], this.grid[line[2]] );
-
       if ( this.grid[line[0]] !== null && this.grid[line[0]] === this.grid[line[1]] && this.grid[line[2]]) {
         winner = this.grid[line[0]];
       }
@@ -141,8 +138,6 @@ export default class Game {
       this.move(index, this.players.computer);
       this.nextMove =this.players.human;
     }
-
-    console.log('Grid after computer move: ', this.grid)
   };
 
   humanMove = (index: number) => {
@@ -150,8 +145,6 @@ export default class Game {
       this.move(index, this.players.human);
       this.nextMove = this.players.computer;
     }
-
-    console.log('Grid after human move: ', this.grid)
   };
 }
 

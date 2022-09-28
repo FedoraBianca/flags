@@ -23,7 +23,6 @@ const ActiveGameFragment: React.FC<IActiveGameFragment> = ({
   useEffect(() => {
     setGridValues([...game.grid]);
     setGridUpdateKey(getRandomInt(4000000, 5000000));
-    console.log("Game winner: ",game.winner);
   }, [game.grid, game.winner]);
 
   useEffect(() => {
@@ -40,7 +39,6 @@ const ActiveGameFragment: React.FC<IActiveGameFragment> = ({
 
   useEffect(() => {
     const winner = game.getWinner();
-    console.log('winner from effect: ', winner);
 
     if (winner != null) {
       game.updateScore(winner);

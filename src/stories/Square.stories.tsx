@@ -11,26 +11,19 @@ export default {
 
 const Template: Story<ISquare> = (args: any) => <Square {...args} />;
 
-export const EmptyForPlayerX = Template.bind({});
-EmptyForPlayerX.args = {
+export const Empty= Template.bind({});
+Empty.args = {
   player: PlayerTypes.PLAYER_X,
   state: SquareState.empty,
 }
-
-export const FilledForPlayerX = Template.bind({});
-FilledForPlayerX.args = {
-  ...EmptyForPlayerX.args,
+export const Filled = Template.bind({});
+Filled.args = {
+  player: PlayerTypes.PLAYER_X,
   state: SquareState.filled,
 }
 
-export const EmptyForPlayerO = Template.bind({});
-EmptyForPlayerO.args = {
-  player: PlayerTypes.PLAYER_O,
-  state: SquareState.empty,
-}
-
-export const FilledForPlayerO = Template.bind({});
-FilledForPlayerO.args = {
-  ...EmptyForPlayerO.args,
-  state: SquareState.filled,
+export const Success = Template.bind({});
+Success.args = {
+  player: PlayerTypes.PLAYER_X,
+  state: SquareState.success,
 }
