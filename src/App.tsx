@@ -28,31 +28,7 @@ function App() {
       setShowActiveGame(false);
     }
   };
-
-  // useEffect(() => {
-  //   let timer: ReturnType<typeof setTimeout>;
-  //   if (nextMove === players.computer && gameState !== GameStates.OVER) {
-  //     timer = setTimeout(() => {
-  //       computerMove();
-  //     }, 500);
-  //   }
-  //   return () => timer && clearTimeout(timer);
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [gameState, nextMove, players.computer]);
-
-  // useEffect(() => {
-  //   const winner = getWinner(grid);
-
-  //   if (winner != null) {
-  //     updateScore(winner);
-  //     setWinner(winner);
-  //     setGameState(GameStates.OVER);
-  //     setShowModal(true);
-  //   }
-
-  // }, [nextMove]);
-
-
+  
   return (
     <>
       {showNewGame && <NewGameFragment onGameStart={handleGameStart} />}

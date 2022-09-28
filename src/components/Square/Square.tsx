@@ -1,21 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { PlayerTypes } from '../../utils/game';
 import Icon from '../Icon';
 import { SquareWrapper } from './Square.style';
 
+export enum SquareState {
+  empty,
+  filled,
+  success
+}
+
 export interface ISquare {
-  isFilled?: boolean;
+  state: SquareState;
   player?: PlayerTypes | null;
   onClick?: (e: React.MouseEvent) => void;
   className?: string;
 }
 
 const Square: React.FC<ISquare> = ({
-  isFilled = false,
+  state,
   player = null,
   onClick = null,
   className = '',
 }) => {
+  const [stateClass, setStateClass] = useState('');
+
+  useEffect(() => {
+    let className = state === SquareState.filled ? 'filled' : state === SquareState.empty ? 'empty' : 'success';
+    setStateClass(className);
+  }, [state]);
+
   const handleClick = (e:  React.MouseEvent) => {
     if (onClick) {
       onClick(e);
@@ -25,18 +38,23 @@ const Square: React.FC<ISquare> = ({
   return (
     <SquareWrapper
       onClick={handleClick}
-      className={`${isFilled ? 'filled' : 'empty'} ${className}`}
+      className={`${stateClass} ${className}`}
     >
-      {isFilled && <Icon
+      {state === SquareState.filled && <Icon
         color={player === PlayerTypes.PLAYER_O ? '#F2B137' : '#31C3BD'}
         icon={player === PlayerTypes.PLAYER_O ? 'OMark' : 'XMark'}
         size='64px'
       />}
-      {!isFilled && <Icon
+      {state === SquareState.empty && <Icon
         color={player === PlayerTypes.PLAYER_O ? '#F2B137' : '#31C3BD'}
         icon={player === PlayerTypes.PLAYER_O ? 'OMarkOutline' : 'XMarkOutline'}
         size='64px'
         className='hover-icon'
+      />}
+      {state === SquareState.success && <Icon
+        color='#1A2A33'
+        icon={player === PlayerTypes.PLAYER_O ? 'OMark' : 'XMark'}
+        size='64px'
       />}
     </SquareWrapper>
   );

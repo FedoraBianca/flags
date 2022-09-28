@@ -70,7 +70,7 @@ export default class Game {
 
   isEmpty = (grid: number[] = this.grid) => this.getEmptySquaresIndexes(grid).length === 9;
 
-  getWinner = (grid: number[] = this.grid): WinnerTypes | null => {
+  getWinner = (): WinnerTypes | null => {
     const winningLines = [
       [0,1,2],
       [3,4,5],
@@ -81,17 +81,20 @@ export default class Game {
       [0,4,8],
       [2,4,6]
     ];
+    let winner = null;
   
     winningLines.forEach((line: number[], index: number) => {
-      if ( grid[line[0]] !== null && grid[line[0]] === grid[line[1]] && grid[line[2]]) {
-        return grid[line[0]];
+      console.log('this.grid[line[0]]: ', this.grid[line[0]], this.grid[line[1]], this.grid[line[2]] );
+
+      if ( this.grid[line[0]] !== null && this.grid[line[0]] === this.grid[line[1]] && this.grid[line[2]]) {
+        winner = this.grid[line[0]];
       }
-      else if (this.getEmptySquaresIndexes(grid).length === 0) {
-        return WinnerTypes.DRAW;
+      else if (this.getEmptySquaresIndexes(this.grid).length === 0) {
+        winner = WinnerTypes.DRAW;
       }
     });
   
-    return null;
+    return winner;
   };
 
   updateScore = (winner: WinnerTypes) => {
@@ -122,7 +125,9 @@ export default class Game {
 
   move = (index: number, player: PlayerTypes) => {
       if (player && this.state === GameStates.IN_PROGRESS) {
-        this.grid[index] = player;
+        let newGrid = [ ...this.grid ];
+        newGrid[index] = player;
+        this.grid = newGrid;
       }
   };
 
@@ -136,6 +141,8 @@ export default class Game {
       this.move(index, this.players.computer);
       this.nextMove =this.players.human;
     }
+
+    console.log('Grid after computer move: ', this.grid)
   };
 
   humanMove = (index: number) => {
@@ -144,7 +151,7 @@ export default class Game {
       this.nextMove = this.players.computer;
     }
 
-    console.log(this.grid);
+    console.log('Grid after human move: ', this.grid)
   };
 }
 
