@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Modal from './components/Modal';
 import { ModalTypes } from './components/Modal/Modal';
 import ActiveGameFragment from './fragments/ActiveGameFragment';
 import NewGameFragment from './fragments/NewGameFragment/NewGameFragment';
-import Game, { GameStates, PlayerTypes } from './utils/game';
+import Game, { PlayerTypes } from './utils/game';
 
 let game = new Game();
 

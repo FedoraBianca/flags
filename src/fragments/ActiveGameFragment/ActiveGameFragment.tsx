@@ -4,7 +4,7 @@ import Logo from '../../components/Logo';
 import ScoreBox from '../../components/ScoreBox';
 import Square from '../../components/Square';
 import { SquareState } from '../../components/Square/Square';
-import Game, { GameStates, getRandomInt } from '../../utils/game';
+import Game, { RoundStates, getRandomInt } from '../../utils/game';
 
 interface IActiveGameFragment {
   onGameRestart: () => void;
@@ -21,7 +21,7 @@ const ActiveGameFragment: React.FC<IActiveGameFragment> = ({
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
-    if (game.players && game.rounds[game.currentRoundIndex].nextMove === game.players.computer && game.state !== GameStates.OVER) {
+    if (game.players && game.rounds[game.currentRoundIndex].nextMove === game.players.computer && game.rounds[game.currentRoundIndex].state !== RoundStates.OVER) {
       timer = setTimeout(() => {
         game.computerMove();
         setGridUpdateKey(getRandomInt(3000000, 4000000));
@@ -29,18 +29,17 @@ const ActiveGameFragment: React.FC<IActiveGameFragment> = ({
     }
     return () => timer && clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [game.state, game.rounds[game.currentRoundIndex].nextMove]);
+  }, [game.rounds[game.currentRoundIndex].state, game.rounds[game.currentRoundIndex].nextMove]);
 
   useEffect(() => {
     const winner = game.rounds[game.currentRoundIndex].getWinner();
 
-    if (winner != null) {
-      game.updateScore(winner);
+    if (winner != null && game.rounds[game.currentRoundIndex].state !== RoundStates.OVER) {
       game.rounds[game.currentRoundIndex].winner = winner;
-      game.state = GameStates.OVER;
-
+      game.rounds[game.currentRoundIndex].state = RoundStates.OVER;
+      game.updateScore();
       setGridUpdateKey(getRandomInt(1000000, 2000000));
-
+      console.log(game.score);
       //setShowModal(true);
     }
 

@@ -9,7 +9,7 @@ export enum WinnerTypes {
   DRAW = 0
 }
 
-export enum GameStates {
+export enum RoundStates {
   NOT_STARTED,
   IN_PROGRESS,
   OVER
@@ -30,11 +30,13 @@ export class Round {
   private _grid: number[];
   private _winner: WinnerTypes | null;
   private _nextMove: PlayerTypes | null;
+  private _state: RoundStates;
 
   constructor() {
     this._grid = new Array(9).fill(null);
     this._winner = null;
     this._nextMove = null;
+    this._state = RoundStates.NOT_STARTED;
   };
 
   public get grid() {
@@ -60,6 +62,14 @@ export class Round {
   public set nextMove(value: PlayerTypes | null) {
     this._nextMove = value;
   };
+
+  public get state() {
+    return this._state;
+  };
+
+  public set state(value: RoundStates) {
+    this._state = value;
+  }
 
   getEmptySquaresIndexes = (grid: number[] = this.grid) => {
     let indexes: number[] = [];
@@ -100,14 +110,12 @@ export class Round {
 };
 
 export default class Game {
-  private _state: GameStates;
   private _players: IPlayers;
   private _score: IScore;
   private _currentRoundIndex: number;
   private _rounds: Round[];
 
   constructor() {
-    this._state = GameStates.NOT_STARTED;
     this._players = { human: PlayerTypes.PLAYER_X, computer: PlayerTypes.PLAYER_O};
     this._score = {
       X: 0,
@@ -117,14 +125,6 @@ export default class Game {
     this._currentRoundIndex = 0;
     this._rounds = [new Round()];
   };
-
-  public get state() {
-    return this._state;
-  };
-
-  public set state(value: GameStates) {
-    this._state = value;
-  }
 
   public get players() {
     return this._players;
@@ -159,7 +159,7 @@ export default class Game {
   }
 
   start = (selectedPlayer: PlayerTypes) => {
-    this.state = GameStates.IN_PROGRESS;
+    this.rounds[this.currentRoundIndex].state = RoundStates.IN_PROGRESS;
     this.players = { human: selectedPlayer, computer: this.getOtherPlayer(selectedPlayer)};
     this.rounds[this.currentRoundIndex].nextMove = this.players.human;
   };
@@ -169,33 +169,35 @@ export default class Game {
   };
 
   hasStarted = (): boolean => {
-    let states = [GameStates.IN_PROGRESS, GameStates.OVER];
-    return states.includes(this.state);
+    let states = [RoundStates.IN_PROGRESS, RoundStates.OVER];
+    return states.includes(this.rounds[this.currentRoundIndex].state);
   };
 
-  updateScore = (winner: WinnerTypes) => {
-    if (winner === WinnerTypes.PLAYER_X) {
+  updateScore = () => {
+    if (this.rounds[this.currentRoundIndex].winner === WinnerTypes.PLAYER_X) {
       this.score = {
         ...this.score,
-        X: this.score.X
+        X: ++this.score.X
       };
     }
-    else if (winner === WinnerTypes.PLAYER_O) {
+    else if (this.rounds[this.currentRoundIndex].winner  === WinnerTypes.PLAYER_O) {
       this.score = {
         ...this.score,
-        O: this.score.O
+        O: ++this.score.O
       };
     }
     else {
       this.score = {
         ...this.score,
-        ties: this.score.ties
+        ties: ++this.score.ties
       };
     }
+
+    console.log(this.score);
   };
 
   move = (index: number, player: PlayerTypes) => {
-    if (player && this.state === GameStates.IN_PROGRESS) {
+    if (player && this.rounds[this.currentRoundIndex].state === RoundStates.IN_PROGRESS) {
       let newGrid = [ ...this.rounds[this.currentRoundIndex].grid ];
       newGrid[index] = player;
       this.rounds[this.currentRoundIndex].grid = newGrid;
@@ -210,7 +212,7 @@ export default class Game {
       }
   
       this.move(index, this.players.computer);
-      this.rounds[this.currentRoundIndex].nextMove =this.players.human;
+      this.rounds[this.currentRoundIndex].nextMove = this.players.human;
     }
   };
 
