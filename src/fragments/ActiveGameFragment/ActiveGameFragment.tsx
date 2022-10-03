@@ -20,10 +20,6 @@ const ActiveGameFragment: React.FC<IActiveGameFragment> = ({
   const [gridUpdateKey, setGridUpdateKey] = useState(getRandomInt(1, 1000000));
 
   useEffect(() => {
-    setGridUpdateKey(getRandomInt(4000000, 5000000));
-  }, []);
-
-  useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
     if (game.players && game.rounds[game.currentRoundIndex].nextMove === game.players.computer && game.state !== GameStates.OVER) {
       timer = setTimeout(() => {
