@@ -1,7 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState } from 'react';
-import Modal from './components/Modal';
-import { ModalTypes } from './components/Modal/Modal';
 import ActiveGameFragment from './fragments/ActiveGameFragment';
 import NewGameFragment from './fragments/NewGameFragment/NewGameFragment';
 import Game, { PlayerTypes } from './utils/game';
@@ -9,7 +7,6 @@ import Game, { PlayerTypes } from './utils/game';
 let game = new Game();
 
 function App() {
-  const [showModal, setShowModal] = useState(false);
   const [showNewGame, setShowNewGame] = useState(true);
   const [showActiveGame, setShowActiveGame] = useState(false);
 
@@ -21,19 +18,32 @@ function App() {
     }
   };
 
-  const handleGameRestart = () => {
-    if (game) {
-      game = new Game();
-      setShowNewGame(true);
-      setShowActiveGame(false);
-    }
+  // const handleGameRestart = () => {
+  //   if (game) {
+  //     game = new Game();
+  //     setShowNewGame(true);
+  //     setShowActiveGame(false);
+  //   }
+  // };
+
+  const handleRestart = () => {
+
   };
-  
+
+  const handleQuit = () => {
+    game = new Game();
+    setShowNewGame(true);
+    setShowActiveGame(false);
+  };
+
   return (
     <>
       {showNewGame && <NewGameFragment onGameStart={handleGameStart} />}
-      {game && showActiveGame && <ActiveGameFragment game={game} onGameRestart={handleGameRestart} />}
-      {game && showModal && <Modal showModal={showModal} type={ModalTypes.OUTCOME} winner={null} />}
+      {game && showActiveGame && <ActiveGameFragment
+        game={game}
+        onRestart={handleRestart}
+        onQuit={handleQuit}
+      />}
     </>
   );
 }

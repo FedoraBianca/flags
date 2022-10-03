@@ -71,6 +71,11 @@ export class Round {
     this._state = value;
   }
 
+  start = () => {
+    this.state = RoundStates.IN_PROGRESS;
+    this.nextMove = PlayerTypes.PLAYER_X;
+  }
+
   getEmptySquaresIndexes = (grid: number[] = this.grid) => {
     let indexes: number[] = [];
     grid.forEach((value: number | null, index: number) => {
@@ -159,9 +164,14 @@ export default class Game {
   }
 
   start = (selectedPlayer: PlayerTypes) => {
-    this.rounds[this.currentRoundIndex].state = RoundStates.IN_PROGRESS;
     this.players = { human: selectedPlayer, computer: this.getOtherPlayer(selectedPlayer)};
-    this.rounds[this.currentRoundIndex].nextMove = this.players.human;
+    this.rounds[this.currentRoundIndex].start();
+  };
+
+  startNewRound = () => {
+    ++this._currentRoundIndex;
+    this.rounds.push(new Round());
+    this.rounds[this.currentRoundIndex].start();
   };
 
   getOtherPlayer = (player: PlayerTypes): PlayerTypes => {
@@ -192,8 +202,6 @@ export default class Game {
         ties: ++this.score.ties
       };
     }
-
-    console.log(this.score);
   };
 
   move = (index: number, player: PlayerTypes) => {
