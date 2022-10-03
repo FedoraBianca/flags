@@ -88,8 +88,8 @@ const Modal: React.FC<IModal> = ({
       </div>}
 
       {type === ModalTypes.RESTART && <div className='modal d-flex flex-column py-4'>
+      <Heading type='L' color='#A8BFC9'>{mainMessage}</Heading>
         <div className='w-100 d-flex justify-content-center mt-4'>
-          <Heading type='L' color='#A8BFC9'>{mainMessage}</Heading>
           <Button variant='primary' theme='grey' onClick={handleCancel} className='mr-2'>
             <Heading type='XS' color='#1F3641'>NO, CANCEL</Heading>
           </Button>

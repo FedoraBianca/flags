@@ -8,19 +8,18 @@ import { SquareState } from '../../components/Square/Square';
 import Game, { RoundStates, getRandomInt } from '../../utils/game';
 
 interface IActiveGameFragment {
-  onRestart: () => void;
   onQuit: () => void;
   game: Game;
   className?: string;
 }
 
 const ActiveGameFragment: React.FC<IActiveGameFragment> = ({
-  onRestart,
   onQuit,
   game,
   className = '',
 }) => {
   const [showOutcomeModal, setShowOutcomeModal] = useState(false);
+  const [showRestartModal, setShowRestartModal] = useState(false);
   const [gridUpdateKey, setGridUpdateKey] = useState(getRandomInt(1, 1000000));
 
   useEffect(() => {
@@ -54,8 +53,17 @@ const ActiveGameFragment: React.FC<IActiveGameFragment> = ({
     setGridUpdateKey(getRandomInt(6000000, 7000000));
   };
 
+  const handleCancle = () => {
+    setShowRestartModal(false);
+  };
+
+  const handleRestartButton = () => {
+    setShowRestartModal(true);
+  };
+
   const handleRestart = () => {
-    onRestart();
+    setShowRestartModal(false);
+    onQuit();
   };
 
   const handleQuit = () => {
@@ -73,7 +81,7 @@ const ActiveGameFragment: React.FC<IActiveGameFragment> = ({
       <div className={`game ${className}`}>
         <div className='d-flex justify-content-between top-row'>
           <Logo />
-          <Button variant='redo' onClick={handleRestart} />
+          <Button variant='redo' onClick={handleRestartButton} />
         </div>
 
         <div id={String(gridUpdateKey)} key={gridUpdateKey} className='grid'>
@@ -103,6 +111,13 @@ const ActiveGameFragment: React.FC<IActiveGameFragment> = ({
         winner={game.rounds[game.currentRoundIndex].winner}
         onQuit={handleQuit}
         onNewRound={handleNewRound}
+      />
+      <Modal
+        type={ModalTypes.RESTART}
+        showModal={showRestartModal}
+        winner={game.rounds[game.currentRoundIndex].winner}
+        onCancel={handleCancle}
+        onRestart={handleRestart}
       />
     </>
   );

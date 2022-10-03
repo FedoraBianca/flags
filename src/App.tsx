@@ -18,18 +18,6 @@ function App() {
     }
   };
 
-  // const handleGameRestart = () => {
-  //   if (game) {
-  //     game = new Game();
-  //     setShowNewGame(true);
-  //     setShowActiveGame(false);
-  //   }
-  // };
-
-  const handleRestart = () => {
-
-  };
-
   const handleQuit = () => {
     game = new Game();
     setShowNewGame(true);
@@ -41,7 +29,6 @@ function App() {
       {showNewGame && <NewGameFragment onGameStart={handleGameStart} />}
       {game && showActiveGame && <ActiveGameFragment
         game={game}
-        onRestart={handleRestart}
         onQuit={handleQuit}
       />}
     </>
