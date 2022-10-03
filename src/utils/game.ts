@@ -29,12 +29,14 @@ export interface IPlayers {
 export class Round {
   private _grid: number[];
   private _winner: WinnerTypes | null;
+  private _winningPositions: number[];
   private _nextMove: PlayerTypes | null;
   private _state: RoundStates;
 
   constructor() {
     this._grid = new Array(9).fill(null);
     this._winner = null;
+    this._winningPositions = [];
     this._nextMove = null;
     this._state = RoundStates.NOT_STARTED;
   };
@@ -53,6 +55,14 @@ export class Round {
 
   public set winner(value: WinnerTypes | null) {
     this._winner = value;
+  };
+
+  public get winningPositions() {
+    return this._winningPositions;
+  };
+
+  public set winningPositions(value: number[]) {
+    this._winningPositions = value;
   };
 
   public get nextMove() {
@@ -88,7 +98,7 @@ export class Round {
 
   isEmpty = (grid: number[] = this.grid) => this.getEmptySquaresIndexes(grid).length === 9;
 
-  getWinner = (): WinnerTypes | null => {
+  computeWinner = (): WinnerTypes | null => {
     const winningLines = [
       [0,1,2],
       [3,4,5],
@@ -101,10 +111,16 @@ export class Round {
     ];
     let winner = null;
   
-    winningLines.forEach((line: number[], index: number) => {
-      if ( this.grid[line[0]] !== null && this.grid[line[0]] === this.grid[line[1]] && this.grid[line[2]]) {
-        winner = this.grid[line[0]];
+    winningLines.forEach((line: number[]) => {
+      let position1 = line[0];
+      let position2 = line[1];
+      let position3 = line[2];
+
+      if (this.grid[position1] && this.grid[position1] === this.grid[position2] && this.grid[position2] === this.grid[position3]) {
+        winner = this.grid[position1];
+        this.winningPositions = [position1, position2, position3];
       }
+
       else if (this.getEmptySquaresIndexes(this.grid).length === 0) {
         winner = WinnerTypes.DRAW;
       }

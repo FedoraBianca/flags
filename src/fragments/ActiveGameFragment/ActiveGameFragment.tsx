@@ -36,14 +36,13 @@ const ActiveGameFragment: React.FC<IActiveGameFragment> = ({
   }, [game.rounds[game.currentRoundIndex].state, game.rounds[game.currentRoundIndex].nextMove]);
 
   useEffect(() => {
-    const winner = game.rounds[game.currentRoundIndex].getWinner();
+    const winner = game.rounds[game.currentRoundIndex].computeWinner();
 
     if (winner != null && game.rounds[game.currentRoundIndex].state !== RoundStates.OVER) {
       game.rounds[game.currentRoundIndex].winner = winner;
       game.rounds[game.currentRoundIndex].state = RoundStates.OVER;
       game.updateScore();
       setGridUpdateKey(getRandomInt(1000000, 2000000));
-      console.log(game.score);
       setShowOutcomeModal(true);
     }
 
@@ -79,7 +78,7 @@ const ActiveGameFragment: React.FC<IActiveGameFragment> = ({
 
         <div id={String(gridUpdateKey)} key={gridUpdateKey} className='grid'>
           {gridUpdateKey && game.rounds[game.currentRoundIndex].grid.map((value: number, index: number) => {
-            let state = (game.rounds[game.currentRoundIndex].grid[index] === null) ? SquareState.empty : game.rounds[game.currentRoundIndex].winner === value ? SquareState.success : SquareState.filled;
+            let state = (game.rounds[game.currentRoundIndex].grid[index] === null) ? SquareState.empty : game.rounds[game.currentRoundIndex].winningPositions.includes(index) ? SquareState.success : SquareState.filled;
             return (
               <Square
                 state={state}
@@ -94,8 +93,8 @@ const ActiveGameFragment: React.FC<IActiveGameFragment> = ({
 
         <div className='score-row'>
           <ScoreBox color='#31C3BD' title='X (You)' score={game.score.X} />
-          <ScoreBox color='#A8BFC9' title='TIES' score={game.score.O} />
-          <ScoreBox color='#F2B137' title='O (CPU)' score={game.score.ties} />
+          <ScoreBox color='#A8BFC9' title='TIES' score={game.score.ties} />
+          <ScoreBox color='#F2B137' title='O (CPU)' score={game.score.O} />
         </div>
       </div>
       <Modal
