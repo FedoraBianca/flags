@@ -109,23 +109,23 @@ export class Round {
       [0,4,8],
       [2,4,6]
     ];
-    let winner = null;
-  
+    let winner: WinnerTypes | null = null;
+
     winningLines.forEach((line: number[]) => {
-      let position1 = line[0];
-      let position2 = line[1];
-      let position3 = line[2];
-
-      if (this.grid[position1] && this.grid[position1] === this.grid[position2] && this.grid[position2] === this.grid[position3]) {
-        winner = this.grid[position1];
-        this.winningPositions = [position1, position2, position3];
-      }
-
-      else if (this.getEmptySquaresIndexes(this.grid).length === 0) {
-        winner = WinnerTypes.DRAW;
-      }
-    });
+      if (winner === null || winner === WinnerTypes.DRAW) {
+        let position1 = line[0];
+        let position2 = line[1];
+        let position3 = line[2];
   
+        if (this.grid[position1] && this.grid[position1] === this.grid[position2] && this.grid[position2] === this.grid[position3]) {
+          this.winningPositions = [position1, position2, position3];
+          winner = this.grid[position1];
+        }
+        else if (this.getEmptySquaresIndexes(this.grid).length === 0) {
+          winner = WinnerTypes.DRAW;
+        }
+      } 
+    });
     return winner;
   };
 };
