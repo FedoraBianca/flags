@@ -194,11 +194,6 @@ export default class Game {
     return player === PlayerTypes.PLAYER_X ? PlayerTypes.PLAYER_O : PlayerTypes.PLAYER_X;
   };
 
-  hasStarted = (): boolean => {
-    let states = [RoundStates.IN_PROGRESS, RoundStates.OVER];
-    return states.includes(this.rounds[this.currentRoundIndex].state);
-  };
-
   updateScore = () => {
     if (this.rounds[this.currentRoundIndex].winner === WinnerTypes.PLAYER_X) {
       this.score = {
