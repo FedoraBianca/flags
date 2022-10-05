@@ -5,7 +5,7 @@ interface IIconWrapper {
   size: string;
 }
 
-export const IconWrapper = styled.div<IIconWrapper>`
+export const IconWrapper = styled.span<IIconWrapper>`
   color: ${(props: IIconWrapper) => props.color};
   font-size: ${(props: IIconWrapper) => props.size};
   width: ${(props: IIconWrapper) => props.size};

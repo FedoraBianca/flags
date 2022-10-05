@@ -1,68 +1,20 @@
 import styled from 'styled-components';
 
-export const PrimaryButton = styled.button`
+export const ButtonWrapper = styled.button`
   cursor: pointer;
-  font-size: 20px;
-  font-weight: bold;
-  text-transform: uppercase;
-  text-align: center;
   border: none;
-  padding: 14px 25px 16px 25px;
-  border-radius: 12px;
+  font-size: 14px;
+  padding: 10px 30px;
+  border-radius: 2px;
+  box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.104931);
 
-  &.blue {
-    background-color: #31C3BD;
-    box-shadow: inset 0px -4px 0px #118C87;
+  &.light {
+    color: #111517;
+    background-color: #FFFFFF;
   }
 
-  &.yellow {
-    background-color: #F2B137;
-    box-shadow: inset 0px -4px 0px #CC8B13;
-  }
-
-  &.grey {
-    background-color: #A8BFC9;
-    box-shadow: inset 0px -4px 0px #84979f;
-  }
-`
-
-export const SecondaryButton = styled.button`
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  text-transform: uppercase;
-  text-align: center;
-  border: none;
-  border-radius: 8px;
-  padding: 5px 20px 7px 20px;
-
-  &.blue {
-    background-color: #31C3BD;
-    box-shadow: inset 0px -4px 0px #118C87;
-  }
-
-  &.yellow {
-    background-color: #F2B137;
-    box-shadow: inset 0px -4px 0px #CC8B13;
-  }
-
-  &.grey {
-    background-color: #A8BFC9;
-    box-shadow: inset 0px -4px 0px #84979f;
-  }
-`
-
-export const RedoButton = styled.button`
-  cursor: pointer;
-  font-size: 20px;
-  width: 50px;
-  height: 50px;
-  background-color: #A8BFC9;
-  box-shadow: inset 0px -4px 0px #84979f;
-  border-radius: 8px;
-  border: none;
-
-  [class^="icon-"], [class*=" icon-"] {
-    margin: auto;
+  &.dark {
+    color: #FFFFFF;
+    background-color: #2B3844;
   }
 `

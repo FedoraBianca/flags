@@ -1,10 +1,8 @@
 import React from 'react';
-import Icon from '../Icon';
-import { PrimaryButton, SecondaryButton, RedoButton } from "./Button.style";
+import { ButtonWrapper } from "./Button.style";
 
 export interface IButton {
-  variant?: 'primary' | 'secondary' | 'redo';
-  theme?: 'blue' | 'yellow' | 'grey'
+  theme?: 'dark' | 'light';
   onClick?: (e: React.MouseEvent) => void;
   disabled?: boolean;
   children?: React.ReactNode;
@@ -12,8 +10,7 @@ export interface IButton {
 }
 
 const Button: React.FC<IButton> = ({
-  variant = 'primary',
-  theme = 'blue',
+  theme = 'light',
   onClick = null,
   disabled = false,
   children = null,
@@ -25,38 +22,15 @@ const Button: React.FC<IButton> = ({
     }
   };
 
-  switch (variant) {
-    case 'primary':
-      return (
-        <PrimaryButton
-          className={`${theme} ${className}`}
-          disabled={disabled}
-          onClick={handleClick}
-        >
-          {children}
-        </PrimaryButton>
-      );
-    case 'secondary':
-      return (
-        <SecondaryButton
-          className={`${theme} ${className}`}
-          disabled={disabled}
-          onClick={handleClick}
-        >
-          {children}
-        </SecondaryButton>
-      );
-    case 'redo':
-      return (
-        <RedoButton
-          className={`${theme} ${className}`}
-          disabled={disabled}
-          onClick={handleClick}
-        >
-          <Icon icon='Redo' color='#1F3641' size='20px' />
-        </RedoButton>
-      );
-  }
+  return (
+    <ButtonWrapper
+      className={`${theme} ${className}`}
+      disabled={disabled}
+      onClick={handleClick}
+    >
+      {children}
+    </ButtonWrapper>
+  );
 };
 
 export default Button;
