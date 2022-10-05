@@ -25,18 +25,21 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-OMark:before {
+.icon-arrow:before {
   content: "\e900";
 }
-.icon-OMarkOutline:before {
+.icon-back-arrow:before {
   content: "\e901";
 }
-.icon-Redo:before {
+.icon-moon-outline:before {
   content: "\e902";
 }
-.icon-XMark:before {
+.icon-moon:before {
   content: "\e903";
 }
-.icon-XMarkOutline:before {
-  content: "\e904";
+.icon-magnifier:before {
+  content: "\e986";
+}
+.icon-IcoMoon:before {
+  content: "\eaea";
 }

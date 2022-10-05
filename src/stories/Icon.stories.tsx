@@ -11,33 +11,37 @@ export default {
 
 const Template: Story<IIcon> = (args: any) => <Icon {...args} />
 
-export const XIcon = Template.bind({});
-XIcon.args = {
-  icon: 'XMark',
+export const MagnifierIcon = Template.bind({});
+MagnifierIcon.args = {
+  icon: 'magnifier',
   size: '60px',
   color: '#000',
 };
 
-export const XIconOutlined = Template.bind({});
-XIconOutlined.args = {
-  ...XIcon.args,
-  icon: 'XMarkOutline',
+export const ArrowIcon = Template.bind({});
+ArrowIcon.args = {
+  icon: 'arrow',
+  size: '60px',
+  color: '#000',
 };
 
-export const ZeroIcon = Template.bind({});
-ZeroIcon.args = {
-  ...XIcon.args,
-  icon: 'OMark',
+export const BackArrowIcon = Template.bind({});
+BackArrowIcon.args = {
+  icon: 'back-arrow',
+  size: '60px',
+  color: '#000',
 };
 
-export const ZeroIconOutlined = Template.bind({});
-ZeroIconOutlined.args = {
-  ...XIcon.args,
-  icon: 'OMarkOutline',
+export const MoonIcon = Template.bind({});
+MoonIcon.args = {
+  icon: 'moon',
+  size: '60px',
+  color: '#000',
 };
 
-export const RedoIcon = Template.bind({});
-RedoIcon.args = {
-  ...XIcon.args,
-  icon: 'Redo',
+export const MoonOutlineIcon = Template.bind({});
+MoonOutlineIcon.args = {
+  icon: 'moon-outline',
+  size: '60px',
+  color: '#000',
 };
