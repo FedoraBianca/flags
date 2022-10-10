@@ -1,7 +1,7 @@
 import { ICurrency } from "./currency";
 
 export class Country {
-  name: string;
+  commonName: string;
   nativeName: string;
   topLevelDomain: string;
   population: number;
@@ -14,7 +14,7 @@ export class Country {
   flag: string;
 
   constructor(
-    name: string,
+    commonName: string,
     nativeName: string,
     topLevelDomain: string,
     population: number,
@@ -26,7 +26,7 @@ export class Country {
     borderCountries: string[],
     flag: string
     ) {
-      this.name = name;
+      this.commonName = commonName;
       this.nativeName = nativeName;
       this.topLevelDomain = topLevelDomain;
       this.population = population;
