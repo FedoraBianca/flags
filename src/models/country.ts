@@ -11,6 +11,7 @@ export class Country {
   languages: string[];
   capital: string;
   borderCountries: string[];
+  flag: string;
 
   constructor(
     name: string,
@@ -22,7 +23,8 @@ export class Country {
     subRegion: string,
     languages: string[],
     capital: string,
-    borderCountries: string[]
+    borderCountries: string[],
+    flag: string
     ) {
       this.name = name;
       this.nativeName = nativeName;
@@ -34,5 +36,6 @@ export class Country {
       this.languages = languages;
       this.capital = capital;
       this.borderCountries = borderCountries;
+      this.flag = flag;
   }
 }
