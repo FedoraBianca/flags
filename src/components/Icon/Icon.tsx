@@ -8,7 +8,7 @@ export interface IIcon {
   className?: string;
 }
 
-const Icon: React.FC<IIcon> =({
+const Icon: React.FC<IIcon> = ({
   icon,
   size,
   color,

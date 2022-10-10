@@ -1,7 +1,7 @@
 import React from 'react';
 import { Story } from '@storybook/react';
 
-import Button from '../components/Button'
+import Button from '../components/Button';
 import { IButton } from '../components/Button/Button';
 import Icon from '../components/Icon';
 
