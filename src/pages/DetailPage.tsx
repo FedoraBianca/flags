@@ -1,11 +1,11 @@
 import React from 'react';
-import { DetailPageWrapper } from './DetailPage.style';
+import Layout from './Layout';
 
 const DetailPage = () => {
   return (
-    <DetailPageWrapper>
+    <Layout>
       Detail Page
-    </DetailPageWrapper>
+    </Layout>
   );
 };
 

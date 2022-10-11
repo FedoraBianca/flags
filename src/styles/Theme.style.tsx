@@ -4,15 +4,21 @@ export const themes = {
     backgroundColor: '#FFFFFF',
     input: {
       color: '#848484',
-      backgroundColor: '#FFFFFF'
+      backgroundColor: '#FFFFFF',
     },
+    page: {
+      backgroundColor: '#F2F2F2',
+    }
   },
   dark: {
     color: '#FFFFFF',
     backgroundColor: '#2B3844',
     input: {
       color: '#FFFFFF',
-      backgroundColor: '#2B3844'
+      backgroundColor: '#2B3844',
     },
+    page: {
+      backgroundColor: '#202C36',
+    }
   }
 };
