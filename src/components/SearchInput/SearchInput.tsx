@@ -24,7 +24,7 @@ const SearchInput: React.FC<ISearchInput> = ({
   };
 
   return (
-    <SearchInputWrapper className={className}>
+    <SearchInputWrapper className={`d-flex flex-row align-items-center ${className}`}>
       <Icon
         icon='magnifier'
         size='18px'

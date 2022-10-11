@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const SearchInputWrapper = styled.div`
   width: 480px;
-  padding: 19px 27px;
+  height: 56px;
+  padding: 0px 27px;
   border-radius: 5px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   background-color: ${({ theme }) => theme.backgroundColor};
