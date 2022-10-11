@@ -1,25 +1,26 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { ThemeContext } from 'styled-components';
 import { IOption } from '../../models/option';
+import { themes } from '../../styles/Theme.style';
 import Icon from '../Icon';
 import { RegionFilterWrapper } from './RegionFilter.style';
 
 export interface IRegionFilter {
   options: IOption[];
   onSelectionChanged?: (option: IOption) => void;
-  theme?: 'dark' | 'light';
   className?: string;
 }
 
 const RegionFilter: React.FC<IRegionFilter> = ({
   options,
   onSelectionChanged,
-  theme = 'light',
   className = ''
 }) => {
   const [showOptions, setShowOptions] = useState(false);
   const [selectedKeyValue, setSelectedKeyValue] = useState({
     id: 0, name: ''
   });
+  const theme = useContext(ThemeContext);
 
   const handleOptionClick = (option: IOption) => () => {
     setSelectedKeyValue({
@@ -39,14 +40,14 @@ const RegionFilter: React.FC<IRegionFilter> = ({
   };
 
   return (
-    <RegionFilterWrapper className={`${theme} ${className}`}>
+    <RegionFilterWrapper className={className}>
       <div className='d-flex flex-row align-items-center justify-content-between value-box' onClick={handleClick}>
         {!selectedKeyValue.name && <div className='placeholder'>Filter by Region</div>}
         {selectedKeyValue.name && <div>{selectedKeyValue.name}</div>}
         <Icon
           icon='arrow'
           size='12px'
-          color={theme === 'light' ? '#000000' : '#FFFFFF'}
+          color={theme === themes.light ? '#000000' : '#FFFFFF'}
           className={showOptions ? 'down-arrow' : 'up-arrow'}
         />
       </div>

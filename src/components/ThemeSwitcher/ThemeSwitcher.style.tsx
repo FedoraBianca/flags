@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 
 export const ThemeSwitcherWrapper = styled.div`
-  &.light {
-    color: #111517;
-  }
-
-  &.dark {
-    color: #FFFFFF;
-  }
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
 `

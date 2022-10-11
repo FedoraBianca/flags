@@ -7,6 +7,8 @@ export const FlagCardWrapper = styled.div`
   border-radius: 5px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   font-size: 14px;
+  background-color: ${({ theme }) => theme.backgroundColor};
+  color: ${({ theme }) => theme.color};
 
   h3 {
     font-size: 18px;
@@ -21,14 +23,5 @@ export const FlagCardWrapper = styled.div`
   .card-label {
     margin: 0 5px 0 0;
     font-weight: 600;
-  }
-
-  &.light {
-    background-color: #FFFFFF;
-  }
-
-  &.dark {
-    background-color: #2B3844;
-    color: #FFFFFF;
   }
 `;

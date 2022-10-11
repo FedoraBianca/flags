@@ -36,10 +36,8 @@ export const RegionFilterWrapper = styled.div`
     transform: rotate(-90deg);
   }
 
-  &.dark {
-    .value-box, .list {
-      background-color: #2B3844;
-      color: #FFFFFF
-    }
+  .value-box, .list {
+    background-color: ${({ theme }) => theme.backgroundColor};
+    color: ${({ theme }) => theme.color};
   }
 `;

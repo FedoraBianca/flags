@@ -2,7 +2,6 @@ import React from 'react';
 import { ButtonWrapper } from "./Button.style";
 
 export interface IButton {
-  theme?: 'dark' | 'light';
   onClick?: (e: React.MouseEvent) => void;
   disabled?: boolean;
   children?: React.ReactNode;
@@ -10,7 +9,6 @@ export interface IButton {
 }
 
 const Button: React.FC<IButton> = ({
-  theme = 'light',
   onClick = null,
   disabled = false,
   children = null,
@@ -24,7 +22,7 @@ const Button: React.FC<IButton> = ({
 
   return (
     <ButtonWrapper
-      className={`${theme} ${className}`}
+      className={className}
       disabled={disabled}
       onClick={handleClick}
     >

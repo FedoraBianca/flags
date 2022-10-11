@@ -2,6 +2,8 @@ import React from 'react';
 import { Story } from '@storybook/react';
 import RegionFilter, { IRegionFilter } from '../components/RegionFilter/RegionFilter';
 import { IOption } from '../models/option';
+import { ThemeProvider } from 'styled-components';
+import { themes } from '../styles/Theme.style';
 
 
 export default {
@@ -9,7 +11,9 @@ export default {
   component: RegionFilter,
 }
 
-const Template: Story<IRegionFilter> = (args: any) => <RegionFilter {...args} />
+const LightTemplate: Story<IRegionFilter> = (args: any) => <ThemeProvider theme={themes.light}><RegionFilter {...args} /></ThemeProvider>;
+const DarkTemplate: Story<IRegionFilter> = (args: any) => <ThemeProvider theme={themes.dark}><RegionFilter {...args} /></ThemeProvider>;
+
 
 const mockOptions = [
   {
@@ -38,16 +42,14 @@ const mockChangeHandler = (option: IOption) => {
   console.log(option);
 };
 
-export const Light = Template.bind({});
+export const Light = LightTemplate.bind({});
 Light.args = {
   onSelectionChanged: mockChangeHandler,
   options: mockOptions,
-  theme: 'light',
 };
 
-export const Dark = Template.bind({});
+export const Dark = DarkTemplate.bind({});
 Dark.args = {
   onSelectionChanged: mockChangeHandler,
   options: mockOptions,
-  theme: 'dark',
 };

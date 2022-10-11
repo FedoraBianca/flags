@@ -4,13 +4,11 @@ import { FlagCardWrapper } from './FlagCard.style';
 
 export interface IFlagCard {
   country: Country;
-  theme?: 'dark' | 'light';
   className?: string;
 }
 
 const FlagCard: React.FC<IFlagCard> = ({
   country,
-  theme = 'light',
   className = '',
 }) => {
   const handleClick = (e: React.MouseEvent) => {
@@ -18,7 +16,7 @@ const FlagCard: React.FC<IFlagCard> = ({
   };
 
   return (
-    <FlagCardWrapper className={`d-flex flex-column ${theme} ${className}`} onClick={handleClick}>
+    <FlagCardWrapper className={`d-flex flex-column ${className}`} onClick={handleClick}>
       <img src={country.flag} alt={`${country.commonName} flag`} />
 
       <div className='d-flex flex-column w-100 px-4 py-4'>

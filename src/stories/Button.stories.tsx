@@ -4,22 +4,23 @@ import { Story } from '@storybook/react';
 import Button from '../components/Button';
 import { IButton } from '../components/Button/Button';
 import Icon from '../components/Icon';
+import { ThemeProvider } from 'styled-components';
+import { themes } from '../styles/Theme.style';
 
 export default {
   title: 'Button',
   component: Button,
 }
 
-const Template: Story<IButton> = (args: any) => <Button {...args} />
+const LightTemplate: Story<IButton> = (args: any) => <ThemeProvider theme={themes.light}><Button {...args} /></ThemeProvider>;
+const DarkTemplate: Story<IButton> = (args: any) => <ThemeProvider theme={themes.dark}><Button {...args} /></ThemeProvider>;
 
-export const Light = Template.bind({});
+export const Light = LightTemplate.bind({});
 Light.args = {
-  theme: 'light',
   children: <span>Germany</span>
 };
 
-export const Dark = Template.bind({});
+export const Dark = DarkTemplate.bind({});
 Dark.args = {
-  theme: 'dark',
   children: <span>Germany</span>
 };

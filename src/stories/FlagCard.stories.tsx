@@ -4,13 +4,16 @@ import FlagCard from '../components/FlagCard';
 import { IFlagCard } from '../components/FlagCard/FlagCard';
 import { Country } from '../models/country';
 import { ICurrency } from '../models/currency';
+import { ThemeProvider } from 'styled-components';
+import { themes } from '../styles/Theme.style';
 
 export default {
   title: 'FlagCard',
   component: FlagCard,
 }
 
-const Template: Story<IFlagCard> = (args: any) => <FlagCard {...args} />
+const LightTemplate: Story<IFlagCard> = (args: any) => <ThemeProvider theme={themes.light}><FlagCard {...args} /></ThemeProvider>;
+const DarkTemplate: Story<IFlagCard> = (args: any) => <ThemeProvider theme={themes.dark}><FlagCard {...args} /></ThemeProvider>;
 
 const mockCountry = new Country(
   'Romania',
@@ -35,14 +38,12 @@ const mockCountry = new Country(
   'https://flagcdn.com/w320/ro.png'
 );
 
-export const Light = Template.bind({});
+export const Light = LightTemplate.bind({});
 Light.args = {
-  country: mockCountry,
-  theme: 'light',
+  country: mockCountry
 };
 
-export const Dark = Template.bind({});
+export const Dark = DarkTemplate.bind({});
 Dark.args = {
-  country: mockCountry,
-  theme: 'dark',
+  country: mockCountry
 };
