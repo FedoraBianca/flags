@@ -40,7 +40,6 @@ export const getCountryByName = async (countryName: string): Promise<any> => {
   };
 
   return await axios.request(options).then((response) => {
-    console.log('Response: ', parseCountryResponse(response.data[0]));
     return parseCountryResponse(response.data[0]);
   }).catch((error) => {
     console.error(error);

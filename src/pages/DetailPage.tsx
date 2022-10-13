@@ -40,9 +40,12 @@ const DetailPage = () => {
         </Button>
       </div>
 
-      <div>
-        {country && <Details country={country} />}
-      </div>
+      {country && <div className='d-flex flex-row details-wrapper'>
+        <div className='image-wrapper'>
+          <img src={country.flag} alt={`${country.commonName} flag`} />
+        </div>
+        <Details country={country} />
+      </div>}
     </Layout>
   );
 };

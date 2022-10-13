@@ -9,4 +9,17 @@ export const PageWrapper = styled.div`
   .icon-back-arrow {
     color: ${({ theme }) => theme.color};
   }
+
+  .details-wrapper {
+    margin-top: 45px;
+
+    .image-wrapper {
+      margin-right: 80px;
+      width: 40%;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
 `
