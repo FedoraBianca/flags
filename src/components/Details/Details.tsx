@@ -54,7 +54,7 @@ const Details: React.FC<IDetails> = ({
         </div>
 
         <div>
-          <span className='card-label'>Currencies:</span>
+          <span className='card-label'>Languages:</span>
           <span>{country.getDisplayLanguageList()}</span>
         </div>
       </div>

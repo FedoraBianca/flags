@@ -17,4 +17,9 @@ body {
 h1, h2, h3, h4, h5, p, span {
   font-family: 'Nunito Sans', sans-serif !important;
 }
+
+.card-label {
+  margin: 0 5px 0 0;
+  font-weight: 600;
+}
 `

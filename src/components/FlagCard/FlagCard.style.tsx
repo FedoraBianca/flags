@@ -19,9 +19,4 @@ export const FlagCardWrapper = styled.div`
     width: 100%;
     border-radius: 5px 5px 0 0;
   }
-
-  .card-label {
-    margin: 0 5px 0 0;
-    font-weight: 600;
-  }
 `;
