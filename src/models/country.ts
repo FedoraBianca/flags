@@ -38,4 +38,16 @@ export class Country {
       this.borderCountries = borderCountries;
       this.flag = flag;
   }
+
+  getDisplayCurrencyList(): string {
+    let list = '';
+    this.currencies.map((currency: ICurrency, index: number) => index === 0 ? list += currency.name : `, ${currency.name}`);
+    return list;
+  };
+
+  getDisplayLanguageList(): string {
+    let list = '';
+    this.languages.map((language: string, index: number) => index === 0 ? list += language : `, ${language}`);
+    return list;
+  };
 }

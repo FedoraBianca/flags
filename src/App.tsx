@@ -1,4 +1,5 @@
 import React from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import {
   BrowserRouter as Router,
   Routes,
@@ -7,14 +8,19 @@ import {
 import HomePage from './pages/HomePage';
 import DetailPage from './pages/DetailPage';
 
+// Initialze the client
+const queryClient = new QueryClient();
+
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/:country" element={<DetailPage />} />
-      </Routes>
-    </Router>
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/:countryName" element={<DetailPage />} />
+        </Routes>
+      </Router>
+    </QueryClientProvider>
   );
 }
 

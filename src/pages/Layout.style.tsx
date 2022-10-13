@@ -5,4 +5,8 @@ export const PageWrapper = styled.div`
   background-color: ${({ theme }) => theme.page.backgroundColor} !important;
   color: ${({ theme }) => theme.color};
   padding: 45px 80px;
+
+  .icon-back-arrow {
+    color: ${({ theme }) => theme.color};
+  }
 `
