@@ -69,12 +69,12 @@ const Details: React.FC<IDetails> = ({
         </div>
       </div>
 
-      <div>
+      { country.borderCountries && (<div>
         <div className='card-label mt-4 mb-2'>Border Countries:</div>
         {country.borderCountries.map((countryName: string) => (
           <Button onClick={handleCountryClick(countryName)} className='mr-3 mb-3'>{countryName}</Button>
         ))}
-      </div>
+      </div>)}
     </DetailsWrapper>
   );
 };
