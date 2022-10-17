@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Button from '../components/Button';
 import Layout from './Layout';
 import Icon from '../components/Icon';
@@ -6,7 +6,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Details from '../components/Details';
 import { useQuery } from 'react-query';
 import { getCountryByName } from '../api';
-import { Country } from '../models/country';
 
 const DetailPage = () => {
   const navigate = useNavigate();
@@ -25,6 +24,7 @@ const DetailPage = () => {
 
   return (
     <Layout>
+      <>
       <div>
         <Button onClick={handleClick}>
           <Icon
@@ -39,12 +39,22 @@ const DetailPage = () => {
         </Button>
       </div>
 
-      {country && <div className='d-flex flex-row details-wrapper'>
-        <div className='image-wrapper'>
-          <img src={country.flag} alt={`${country.commonName} flag`} />
-        </div>
-        <Details country={country} />
-      </div>}
+      {error &&
+        <div className='text-danger'>
+          Something went wrong! Please try again later!
+        </div>}
+
+      {!error && <>
+        {isLoading && <span>Loading...</span>}
+
+        {!isLoading && country && <div className='d-flex flex-row details-wrapper'>
+          <div className='image-wrapper'>
+            <img src={country.flag} alt={`${country.commonName} flag`} />
+          </div>
+          <Details country={country} />
+        </div>}
+      </>}
+      </>
     </Layout>
   );
 };
