@@ -47,9 +47,9 @@ const HomePage = () => {
         <RegionFilter options={mockOptions} onSelectionChanged={handleFilter} />
       </div>
 
-      <div>
+      <div className='d-flex justify-content-between flex-wrap mt-5'>
         {countryList && countryList.map((country: Country) => (
-          <FlagCard country={country} key={country.commonName} />
+          <FlagCard country={country} key={country.commonName} className='mr-5 mb-5' />
         ))}
       </div>
     </Layout>
