@@ -12,7 +12,6 @@ const DetailPage = () => {
   const navigate = useNavigate();
   const params = useParams<{ countryName: string }>();
   const { countryName } = params;
-  //let queryResult;
   let { data: country, error, isLoading, refetch } = useQuery('country', () => getCountryByName(countryName || ''));
 
   useEffect(() => {
