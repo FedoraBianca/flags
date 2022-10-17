@@ -15,8 +15,16 @@ export const FlagCardWrapper = styled.div`
     font-weight: bolder;
   }
 
-  img {
+  .image-container {
     width: 100%;
+    height: 50%;
     border-radius: 5px 5px 0 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+      border-radius: 5px 5px 0 0;
+    }
   }
 `;

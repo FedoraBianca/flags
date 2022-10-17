@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Country } from '../../models/country';
 import { FlagCardWrapper } from './FlagCard.style';
 
@@ -11,13 +12,17 @@ const FlagCard: React.FC<IFlagCard> = ({
   country,
   className = '',
 }) => {
-  const handleClick = (e: React.MouseEvent) => {
-    // TODO: implement redirect to detail page
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/${country.commonName}`);
   };
 
   return (
     <FlagCardWrapper className={`d-flex flex-column ${className}`} onClick={handleClick}>
-      <img src={country.flag} alt={`${country.commonName} flag`} />
+      <div className='image-container'>
+        <img src={country.flag} alt={`${country.commonName} flag`} />
+      </div>
 
       <div className='d-flex flex-column w-100 px-4 py-4'>
         <h3 className='mb-3'>{country.commonName}</h3>
